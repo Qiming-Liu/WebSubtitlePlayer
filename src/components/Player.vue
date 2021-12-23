@@ -1,70 +1,50 @@
 <script>
 import Background from './Background.vue'
 import Text from './Text.vue';
-import Slider from '@vueform/slider'
-import srtparser from 'srtparsejs'
-import { srt } from './srt'
-export default {
-  name: 'Player',
+import Layer from './Layer.vue';
+
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   components: {
     Background,
     Text,
-    Slider
+    Layer
   },
   data() {
     return {
-      size: "3",
-      interval: 100,
+      size: 3,
 
-      srtList: [],
       text: "",
-      value: 0,
-      max: 100,
-      pause: false,
-      format: value => {
-        let ms = value * this.interval
-        let time = srtparser.toTime(ms)
-        return time.substr(0, 8)
-      }
+      showModal: true,
+      setText: text => {
+        this.text = text
+      },
+      setSize: change => {
+        this.size += Number(change)
+        if (this.size < 1) {
+          this.size = 1
+        } else if (this.size > 12) {
+          this.size = 12
+        }
+      },
     }
   },
-  mounted() {
-    //read srt file
-    let srtArray = srtparser.parse(srt);
-
-    //creat srtplayer
-    let player = srtparser.setPlayer(srtArray, text => {
-      this.text = text;
-    })
-
-    //set max
-    this.max = Math.floor(srtparser.toMS(player.getEndTime()) / this.interval)
-
-    //update time
-    setInterval(() => {
-      if (this.pause) return;
-      //update value
-      this.value += 1
-
-      player.update(srtparser.toTime(this.value * this.interval));
-    }, this.interval)
-  },
-}
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal
+    }
+  }
+})
 </script>
 
 <template>
-  <Background>
+  <Background @click="toggleModal">
     <Text v-model:msg="text" :size="size" />
   </Background>
-  <Slider v-model="value" :format="format" :max="max" :lazy="false" />
+  <Layer v-model:show="showModal" :setText="setText" :setSize="setSize" @click="toggleModal" />
 </template>
 
 <style src="@vueform/slider/themes/default.css"></style>
 <style scoped>
-Slider {
-  position: relative;
-  width: 100vw;
-  height: 20vh;
-  margin-bottom: 10;
-}
 </style>

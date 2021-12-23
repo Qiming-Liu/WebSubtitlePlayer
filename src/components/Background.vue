@@ -6,16 +6,16 @@ defineProps({
 
 <template>
   <div>
-    <slot />
+    <slot></slot>
   </div>
 </template>
 
 <style scoped>
 div {
   background-color: #000000;
-  height: 96vh;
+  height: 100vh;
   width: 100vw;
-  display : flex;
-  align-items : center;
+  display: flex;
+  align-items: center;
 }
 </style>
