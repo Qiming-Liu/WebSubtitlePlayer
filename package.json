@@ -9,7 +9,7 @@
   "dependencies": {
     "@vueform/slider": "^2.0.8",
     "ant-design-vue": "^3.0.0-alpha.16",
-    "srtparsejs": "^0.0.6",
+    "srtparsejs": "^1.0.1",
     "vue": "^3.2.25"
   },
   "devDependencies": {

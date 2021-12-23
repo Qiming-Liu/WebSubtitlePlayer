@@ -1,5 +1,5 @@
 <script>
-import Background from './Background.vue';
+import Background from './Background.vue'
 import Text from './Text.vue';
 import Slider from '@vueform/slider'
 import srtparser from 'srtparsejs'
@@ -47,7 +47,7 @@ export default {
       this.value += 1
 
       player.update(srtparser.toTime(this.value * this.interval));
-    }, this.interval);
+    }, this.interval)
   },
 }
 </script>
