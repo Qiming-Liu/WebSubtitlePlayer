@@ -10,10 +10,10 @@
 <img alt="Sits in the status bar" src="https://github.com/Qiming-Liu/WebSubtitlePlayer/raw/main/docs/intro.gif" width="100%" align="center" />
 </p>
 
-## [**Online Demo**](https://subtitle-f9f2e.web.app/)
+## [**Online Demo**](https://qiming-liu.github.io/WebSubtitlePlayer)
 
 ## What's the this
-> This is a local web .srt (subtitle) file player. Just need any browser to run it. You can pause and play or adjust the font size.
+> A Local Web .srt (Subtitle) File Player. You can pause, play and adjust the font size.
 
 ## Package
 * Vue 3
