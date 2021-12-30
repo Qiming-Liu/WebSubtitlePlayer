@@ -4,7 +4,6 @@
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Qiming-Liu/WebSubtitlePlayer?color=9cf&style=flat-square">
     <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/Qiming-Liu/WebSubtitlePlayer?color=9cf&style=flat-square">
     <a target="_blank" href="https://github.com/Qiming-Liu/WebSubtitlePlayer/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">
-        <img alt="GitHub issues by-label" src="https://img.shields.io/github/issues/Qiming-Liu/WebSubtitlePlayer/good%20first%20issue?color=9cf&label=good%20first%20issue&style=flat-square">
     </a>
 
 <p align="center">
