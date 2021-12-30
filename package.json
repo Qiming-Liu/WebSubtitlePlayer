@@ -1,6 +1,8 @@
 {
   "name": "websubtitleplayer",
   "version": "1.0.1",
+  "description": "A Local Web .srt (Subtitle) File Player. You can pause, play and adjust the font size.",
+  "homepage": "https://qiming-liu.github.io/WebSubtitlePlayer",
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=./",
