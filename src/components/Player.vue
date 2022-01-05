@@ -1,15 +1,15 @@
 <script>
-import Background from './Background.vue'
-import Text from './Text.vue';
-import Layer from './Layer.vue';
+import Background from "./Background.vue";
+import Text from "./Text.vue";
+import Layer from "./Layer.vue";
 
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
     Background,
     Text,
-    Layer
+    Layer,
   },
   data() {
     return {
@@ -17,11 +17,11 @@ export default defineComponent({
 
       text: "",
       showModal: true,
-      setText: text => {
-        this.text = text
+      setText: (text) => {
+        this.text = text;
       },
-      setSize: change => {
-        this.size += Number(change)
+      setSize: (change) => {
+        this.size += Number(change);
         if (this.size < 1) {
           this.size = 1
         } else if (this.size > 12) {
@@ -33,18 +33,22 @@ export default defineComponent({
   methods: {
     toggleModal() {
       this.showModal = !this.showModal
-    }
-  }
-})
+    },
+  },
+});
 </script>
 
 <template>
   <Background @click="toggleModal">
     <Text v-model:msg="text" :size="size" />
   </Background>
-  <Layer v-model:show="showModal" :setText="setText" :setSize="setSize" @click="toggleModal" />
+  <Layer
+    v-model:show="showModal"
+    :setText="setText"
+    :setSize="setSize"
+    @click="toggleModal"
+  />
 </template>
 
 <style src="@vueform/slider/themes/default.css"></style>
-<style scoped>
-</style>
+<style scoped></style>

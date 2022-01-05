@@ -1,6 +1,6 @@
 {
   "name": "websubtitleplayer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Local Web .srt (Subtitle) File Player. You can pause, play and adjust the font size.",
   "homepage": "https://qiming-liu.github.io/WebSubtitlePlayer",
   "scripts": {
@@ -11,7 +11,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
     "@vueform/slider": "^2.0.8",
-    "ant-design-vue": "^3.0.0-alpha.14",
+    "ant-design-vue": "^3.0.0-alpha.16",
     "srtparsejs": "^1.0.2",
     "vue": "^3.2.25",
     "vue-final-modal": "^3.4.3"

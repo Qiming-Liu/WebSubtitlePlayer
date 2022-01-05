@@ -1,10 +1,16 @@
 <script>
-import { $vfm, VueFinalModal, ModalsContainer } from 'vue-final-modal'
-import { UploadOutlined, PlayCircleTwoTone, PauseCircleTwoTone, PlusSquareFilled, MinusSquareFilled } from '@ant-design/icons-vue';
-import Slider from '@vueform/slider'
-import Srtparser from 'srtparsejs'
+import { $vfm, VueFinalModal, ModalsContainer } from "vue-final-modal";
+import {
+  UploadOutlined,
+  PlayCircleTwoTone,
+  PauseCircleTwoTone,
+  PlusSquareFilled,
+  MinusSquareFilled,
+} from "@ant-design/icons-vue";
+import Slider from "@vueform/slider";
+import Srtparser from "srtparsejs";
 
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
@@ -14,12 +20,12 @@ export default defineComponent({
     PlayCircleTwoTone,
     PauseCircleTwoTone,
     PlusSquareFilled,
-    MinusSquareFilled
+    MinusSquareFilled,
   },
   props: {
     show: Boolean,
     setText: Function,
-    setSize: Function
+    setSize: Function,
   },
   data() {
     return {
@@ -30,20 +36,20 @@ export default defineComponent({
       pause: false,
       intervaler: null,
       player: null,
-      format: sliderValue => {
-        let ms = sliderValue * this.interval
-        let time = Srtparser.toTime(ms)
-        return time.substr(0, 8)
+      format: (sliderValue) => {
+        let ms = sliderValue * this.interval;
+        let time = Srtparser.toTime(ms);
+        return time.substr(0, 8);
       },
-    }
+    };
   },
   methods: {
     beforeUpload(file) {
-      let t = this
-      let reader = new FileReader()
+      let t = this;
+      let reader = new FileReader();
 
       reader.onload = function () {
-        t.setSubtitle(this.result)
+        t.setSubtitle(this.result);
       };
 
       reader.readAsText(file);
@@ -54,93 +60,124 @@ export default defineComponent({
       let srtArray = Srtparser.parse(srt);
 
       //set srtplayer
-      this.player = Srtparser.setPlayer(srtArray, text => {
-        this.setText(text)
-      })
+      this.player = Srtparser.setPlayer(srtArray, (text) => {
+        this.setText(text);
+      });
 
       //set max
-      this.max = Math.floor(Srtparser.toMS(this.player.getEndTime()) / this.interval)
+      this.max = Math.floor(
+        Srtparser.toMS(this.player.getEndTime()) / this.interval
+      );
 
       if (this.intervaler === null) {
-
         // nothing to do
-        this.intervaler = setInterval(() => { }, 60000)
-        this.pause = true
-        this.player.update("00:00:00,000")
-
+        this.intervaler = setInterval(() => {}, 60000);
+        this.pause = true;
+        this.player.update("00:00:00,000");
       } else {
-        clearInterval(this.intervaler)
-        this.pause = false
-        this.sliderValue = 0
+        clearInterval(this.intervaler);
+        this.pause = false;
+        this.sliderValue = 0;
 
         //update time
         this.intervaler = setInterval(() => {
           if (this.pause) return;
           //update value
-          this.sliderValue += 1
+          this.sliderValue += 1;
 
-          this.player.update(Srtparser.toTime(this.sliderValue * this.interval));
-        }, this.interval)
+          this.player.update(
+            Srtparser.toTime(this.sliderValue * this.interval)
+          );
+        }, this.interval);
       }
     },
     togglePause(e) {
-      this.pause = !this.pause
-      e.cancelBubble = true
+      this.pause = !this.pause;
+      e.cancelBubble = true;
     },
   },
   mounted() {
     this.$nextTick().then(() => {
-      this.setSubtitle("1\n00:00:00,000 --> 00:00:01,000\nWeb Subtitle Player\n")
-    })
-  }
-})
+      this.setSubtitle(
+        "1\n00:00:00,000 --> 00:00:01,000\nWeb Subtitle Player\n"
+      );
+    });
+  },
+});
 </script>
 
 <template>
   <keep-alive>
-    <div class="cover">
-      <vue-final-modal v-model="show" classes="modal-container" content-class="modal-content">
-        <div class="upload">
-          <a-upload accept=".srt" :beforeUpload="beforeUpload" :showUploadList="false">
-            <a-button>
-              <upload-outlined></upload-outlined>Select .srt File
-            </a-button>
-          </a-upload>
-        </div>
+    <vue-final-modal
+      v-model="show"
+      classes="modal-container"
+      content-class="modal-content"
+    >
+      <div class="upload">
+        <a-upload
+          accept=".srt"
+          :beforeUpload="beforeUpload"
+          :showUploadList="false"
+        >
+          <a-button>
+            <upload-outlined></upload-outlined>Select .srt File
+          </a-button>
+        </a-upload>
+      </div>
 
-        <div class="size">
-          <a-space>
-            <a-button type="primary" v-on:click="e=>{e.cancelBubble = true;setSize(1);}">
-              <template #icon>
-                <plus-square-filled />
-              </template>
-            </a-button>
-            <a-button type="primary" v-on:click="e=>{e.cancelBubble = true;setSize(-1);}">
-              <template #icon>
-                <minus-square-filled />
-              </template>
-            </a-button>
-          </a-space>
-        </div>
-
-        <div class="play">
-          <a-avatar
-            :size="{ xs: 105, sm: 131, md: 164, lg: 205, xl: 256, xxl: 320 }"
-            @click="togglePause"
-            style="background: transparent;"
+      <div class="size">
+        <a-space>
+          <a-button
+            type="primary"
+            v-on:click="
+              (e) => {
+                e.cancelBubble = true;
+                setSize(1);
+              }
+            "
           >
             <template #icon>
-              <play-circle-two-tone v-if="pause" />
-              <pause-circle-two-tone v-else />
+              <plus-square-filled />
             </template>
-          </a-avatar>
-        </div>
+          </a-button>
+          <a-button
+            type="primary"
+            v-on:click="
+              (e) => {
+                e.cancelBubble = true;
+                setSize(-1);
+              }
+            "
+          >
+            <template #icon>
+              <minus-square-filled />
+            </template>
+          </a-button>
+        </a-space>
+      </div>
 
-        <div class="slider">
-          <Slider v-model="sliderValue" :format="format" :max="max" :lazy="false" />
-        </div>
-      </vue-final-modal>
-    </div>
+      <div class="play">
+        <a-avatar
+          :size="{ xs: 105, sm: 131, md: 164, lg: 205, xl: 256, xxl: 320 }"
+          @click="togglePause"
+          style="background: transparent"
+        >
+          <template #icon>
+            <play-circle-two-tone v-if="pause" />
+            <pause-circle-two-tone v-else />
+          </template>
+        </a-avatar>
+      </div>
+
+      <div class="slider">
+        <Slider
+          v-model="sliderValue"
+          :format="format"
+          :max="max"
+          :lazy="false"
+        />
+      </div>
+    </vue-final-modal>
   </keep-alive>
 </template>
 

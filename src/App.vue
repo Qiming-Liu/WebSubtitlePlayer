@@ -1,5 +1,5 @@
 <script setup>
-import Player from './components/Player.vue';
+import Player from "./components/Player.vue";
 </script>
 
 <template>
@@ -9,6 +9,12 @@ import Player from './components/Player.vue';
 <style>
 * {
   margin: 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #app {
   -webkit-font-smoothing: antialiased;
