@@ -12,7 +12,7 @@
 
 ## [**Online Demo**](https://qiming-liu.github.io/WebSubtitlePlayer)
 
-## What's the this
+## What is this
 > A Local Web .srt (Subtitle) File Player. You can pause, play and adjust the font size.
 
 ## Package
