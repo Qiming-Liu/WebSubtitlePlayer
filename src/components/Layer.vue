@@ -8,7 +8,7 @@ import {
   MinusSquareFilled,
 } from "@ant-design/icons-vue";
 import Slider from "@vueform/slider";
-import Srtparser from "srtparsejs";
+import * as srtparsejs from "srtparsejs";
 
 import { defineComponent } from "vue";
 
@@ -30,7 +30,6 @@ export default defineComponent({
   data() {
     return {
       interval: 100,
-
       sliderValue: 0,
       max: 100,
       pause: false,
@@ -38,7 +37,7 @@ export default defineComponent({
       player: null,
       format: (sliderValue) => {
         let ms = sliderValue * this.interval;
-        let time = Srtparser.toTime(ms);
+        let time = srtparsejs.toTime(ms);
         return time.substr(0, 8);
       },
     };
@@ -57,16 +56,16 @@ export default defineComponent({
     },
     setSubtitle(srt) {
       //read srt file
-      let srtArray = Srtparser.parse(srt);
+      let srtArray = srtparsejs.parse(srt);
 
       //set srtplayer
-      this.player = Srtparser.setPlayer(srtArray, (text) => {
+      this.player = srtparsejs.setPlayer(srtArray, (text) => {
         this.setText(text);
       });
 
       //set max
       this.max = Math.floor(
-        Srtparser.toMS(this.player.getEndTime()) / this.interval
+        srtparsejs.toMS(this.player.getEndTime()) / this.interval
       );
 
       if (this.intervaler === null) {
@@ -86,7 +85,7 @@ export default defineComponent({
           this.sliderValue += 1;
 
           this.player.update(
-            Srtparser.toTime(this.sliderValue * this.interval)
+            srtparsejs.toTime(this.sliderValue * this.interval)
           );
         }, this.interval);
       }
