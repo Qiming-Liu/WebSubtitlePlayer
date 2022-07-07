@@ -1,6 +1,6 @@
 {
   "name": "websubtitleplayer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Local Web .srt (Subtitle) File Player. You can pause, play and adjust the font size.",
   "homepage": "https://qiming-liu.github.io/WebSubtitlePlayer",
   "scripts": {
