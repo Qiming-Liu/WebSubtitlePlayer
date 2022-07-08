@@ -33,7 +33,6 @@ export default defineComponent({
   methods: {
     setTime() {
       this.downTime = Date.now();
-      console.log(1);
     },
     toggleModal() {
       if (Date.now() - this.downTime < 200) {
@@ -46,7 +45,7 @@ export default defineComponent({
 
 <template>
   <Background @mousedown="setTime" @mouseup="toggleModal">
-    <Text v-model:msg="text" :size="size" />
+    <Text v-model:msg="text" :size="size.toString()" />
   </Background>
   <Layer
     v-model:show="showModal"

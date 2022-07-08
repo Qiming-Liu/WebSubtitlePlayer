@@ -3452,10 +3452,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
-srtparsejs@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/srtparsejs/-/srtparsejs-1.0.3.tgz#5fea504632b98b666a6eeec3528d8b739fa9eda4"
-  integrity sha512-+lJeQky0Z8y1rMyoTLQi0mQSJUWdA4V8kt1k6HAPrx6JQGdZQ64Uyh5U3Kzzlw77lR0UJrz6Bm9o1c9bNW40ow==
+srtparsejs@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/srtparsejs/-/srtparsejs-1.0.7.tgz#5d7fe213697eec7293802a8a78948db26fafb3ac"
+  integrity sha512-icAJ1zh9WRvUxppF38ALwKo2cqPNQUD0XvyXS2/Fou0jZ/tNW/FIYjPEWGLfeUcwoRDWgdVdt/HOpA+vYj5T7g==
   dependencies:
     "@babel/core" "^7.18.6"
     "@babel/preset-env" "^7.18.6"
