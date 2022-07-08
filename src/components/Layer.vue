@@ -107,76 +107,73 @@ export default defineComponent({
 
 <template>
   <keep-alive>
-    <vue-final-modal
+  <vue-final-modal
       v-model="show"
       classes="modal-container"
       content-class="modal-content"
     >
-      <div class="upload">
-        <a-upload
-          accept=".srt"
-          :beforeUpload="beforeUpload"
-          :showUploadList="false"
-        >
-          <a-button>
-            <upload-outlined></upload-outlined>Select .srt File
-          </a-button>
-        </a-upload>
-      </div>
 
-      <div class="size">
-        <a-space>
-          <a-button
-            type="primary"
-            v-on:click="
-              (e) => {
-                e.cancelBubble = true;
-                setSize(1);
-              }
-            "
-          >
-            <template #icon>
-              <plus-square-filled />
-            </template>
-          </a-button>
-          <a-button
-            type="primary"
-            v-on:click="
-              (e) => {
-                e.cancelBubble = true;
-                setSize(-1);
-              }
-            "
-          >
-            <template #icon>
-              <minus-square-filled />
-            </template>
-          </a-button>
-        </a-space>
-      </div>
+    <div class="upload">
+      <a-upload
+        accept=".srt"
+        :beforeUpload="beforeUpload"
+        :showUploadList="false"
+      >
+        <a-button>
+          <upload-outlined></upload-outlined>Select .srt File
+        </a-button>
+      </a-upload>
+    </div>
 
-      <div class="play">
-        <a-avatar
-          :size="{ xs: 105, sm: 131, md: 164, lg: 205, xl: 256, xxl: 320 }"
-          @click="togglePause"
-          style="background: transparent"
+    <div class="size">
+      <a-space>
+        <a-button
+          type="primary"
+          v-on:click="
+            (e) => {
+              e.cancelBubble = true;
+              setSize(1);
+            }
+          "
         >
           <template #icon>
-            <play-circle-two-tone v-if="pause" />
-            <pause-circle-two-tone v-else />
+            <plus-square-filled />
           </template>
-        </a-avatar>
-      </div>
+        </a-button>
+        <a-button
+          type="primary"
+          v-on:click="
+            (e) => {
+              e.cancelBubble = true;
+              setSize(-1);
+            }
+          "
+        >
+          <template #icon>
+            <minus-square-filled />
+          </template>
+        </a-button>
+      </a-space>
+    </div>
 
-      <div class="slider">
-        <Slider
-          v-model="sliderValue"
-          :format="format"
-          :max="max"
-          :lazy="false"
-        />
-      </div>
-    </vue-final-modal>
+    <div class="play">
+      <a-avatar
+        :size="{ xs: 105, sm: 131, md: 164, lg: 205, xl: 256, xxl: 320 }"
+        @click="togglePause"
+        style="background: transparent"
+      >
+        <template #icon>
+          <play-circle-two-tone v-if="pause" />
+          <pause-circle-two-tone v-else />
+        </template>
+      </a-avatar>
+    </div>
+
+    <div class="slider">
+      <Slider v-model="sliderValue" :format="format" :max="max" :lazy="false" />
+    </div>
+
+  </vue-final-modal>
   </keep-alive>
 </template>
 
